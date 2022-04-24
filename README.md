@@ -12,4 +12,4 @@ A way for music producers and sound designers to talk about audio samples from t
 ## Branches
 
 - staging -> pr this branch for everything
-- prod -> Production
+- production -> Production
