@@ -1,6 +1,8 @@
 import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { GoogleIcon } from '../icons';
+import { Auth } from 'aws-amplify';
+import { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 
 export default function SignInModal() {
   const [open, setOpen] = useState(true);
@@ -53,19 +55,23 @@ export default function SignInModal() {
             </div>
             <div>
               <div>
-                <div className='mt-1 grid grid-cols-1 gap-3'>
+                <div
+                  className='mt-1 grid grid-cols-1 gap-3'
+                  onClick={() =>
+                    Auth.federatedSignIn({
+                      provider: CognitoHostedUIIdentityProvider.Google,
+                    })
+                  }
+                >
                   <div>
-                    <a
-                      href='#'
-                      className='w-full space-x-2 flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white font-medium text-gray-500 hover:bg-gray-50'
-                    >
+                    <div className='w-full space-x-2 flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white font-medium text-gray-500 hover:bg-gray-50'>
                       <div>
                         <GoogleIcon />
                       </div>
                       <div>
                         <span className=''>Continue with Google</span>
                       </div>
-                    </a>
+                    </div>
                   </div>
                 </div>
               </div>

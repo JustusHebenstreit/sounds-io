@@ -1,6 +1,10 @@
+import { Amplify } from 'aws-amplify';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { Container, Navbar, SoundList, Modal } from '../components';
+import { Container, Modal, Navbar, SoundList } from '../components';
+import { cognito } from '../utils/aws-exports';
+
+Amplify.configure({ ...cognito });
 
 const Home: NextPage = () => {
   return (
