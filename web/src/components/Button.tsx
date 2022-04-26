@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { PlusSmIcon } from '@heroicons/react/solid';
 import { Auth } from 'aws-amplify';
+import { AppContext } from '../context/authentication';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -13,10 +14,15 @@ export const Button: React.FC<ButtonProps> = ({
   classNames,
   icon,
 }) => {
+  const { setOpenAuthModal } = useContext(AppContext);
+
   const handleClick = async () => {
     Auth.currentAuthenticatedUser()
       .then((user) => console.log(user))
-      .catch((_err) => console.log('Open auth modal'));
+      .catch((err) => {
+        console.log(err);
+        setOpenAuthModal(true);
+      });
   };
 
   return (

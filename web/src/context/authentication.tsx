@@ -21,7 +21,7 @@ interface AppContextProviderProps {
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({
   children,
 }) => {
-  const [openAuthModal, setOpenAuthModal] = useState<boolean>(true);
+  const [openAuthModal, setOpenAuthModal] = useState<boolean>(false);
 
   return (
     <AppContext.Provider value={{ openAuthModal, setOpenAuthModal }}>
