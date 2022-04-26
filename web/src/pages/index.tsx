@@ -16,9 +16,7 @@ const Home: NextPage = () => {
       </Head>
       <Navbar />
       <main>
-        <div>
-          <Modal />
-        </div>
+        <Modal />
         <Container>
           <SoundList />
         </Container>
