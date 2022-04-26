@@ -11,11 +11,11 @@ export default function SignInModal() {
   return (
     <Dialog
       as='div'
-      className='fixed z-10 inset-0 overflow-y-auto'
+      className='fixed z-10 inset-0 overflow-y-auto lg:flex lg:justify-center'
       onClose={() => authModal.setOpenAuthModal(false)}
       open={authModal.openAuthModal}
     >
-      <div className='flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
+      <div className='flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block lg:max-w-4xl'>
         <Transition
           as={Fragment}
           enter='ease-out duration-300'
@@ -46,10 +46,10 @@ export default function SignInModal() {
           leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'
           show={authModal.openAuthModal}
         >
-          <div className='relative inline-block align-bottom bg-white min-w-full rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6'>
+          <div className='relative inline-block align-bottom bg-slate-50 min-w-full rounded-lg px-4 py-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6'>
             <div className='mx-auto mb-4 w-full max-w-sm lg:w-96'>
               <div>
-                <h2 className='text-2xl font-extrabold text-gray-900'>
+                <h2 className='text-2xl font-bold text-gray-900 text-center'>
                   Sign in to your account
                 </h2>
               </div>
@@ -65,7 +65,7 @@ export default function SignInModal() {
                   }
                 >
                   <div>
-                    <div className='w-full space-x-2 flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white font-medium text-gray-500 hover:bg-gray-50'>
+                    <div className='w-full space-x-2 flex items-center justify-center py-2 px-4 border rounded-md shadow-sm bg-white font-medium text-gray-500 hover:bg-gray-50'>
                       <div>
                         <GoogleIcon />
                       </div>

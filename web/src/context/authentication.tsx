@@ -7,7 +7,9 @@ interface AppContextInterface {
 
 const initialState = {
   openAuthModal: false,
-  setOpenAuthModal: (_open: boolean) => {},
+  setOpenAuthModal: (_open: boolean) => {
+    // Return void
+  },
 };
 
 export const AppContext = createContext<AppContextInterface>(initialState);
