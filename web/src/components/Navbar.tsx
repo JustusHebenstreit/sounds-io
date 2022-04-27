@@ -1,25 +1,22 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { Button } from './Button';
+import { useRouter } from 'next/router';
 
-const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
-  imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-};
-const navigation = [
-  { name: 'Sounds', href: '#', current: true },
-  { name: 'Community', href: '#', current: false },
-  { name: 'Tools', href: '#', current: false },
-  { name: 'About', href: '#', current: false },
-];
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
   { name: 'Sign out', href: '#' },
+];
+
+const navigation = [
+  { name: 'Sounds', href: '/', current: true },
+  { name: 'Community', href: '/community', current: false },
+  { name: 'Tools', href: '/tools', current: false },
+  { name: 'About', href: '/about', current: false },
+  { name: 'How to post a sound?', href: '/protips', current: false },
 ];
 
 function classNames(...classes: string[]) {
@@ -27,6 +24,9 @@ function classNames(...classes: string[]) {
 }
 
 export const Navbar: React.FC = () => {
+  const [user, setUser] = useState<null | string>(null);
+  const Router = useRouter();
+
   return (
     <Disclosure as='nav' className='bg-white border-b-[0.5px] shadow-sm'>
       {({ open }) => (
@@ -54,7 +54,7 @@ export const Navbar: React.FC = () => {
                       <a
                         key={item.name}
                         className={classNames(
-                          item.current
+                          item.href === Router.pathname
                             ? 'bg-gray-700 text-white'
                             : 'text-gray-700 hover:bg-gray-700 hover:text-white',
                           'px-3 py-2 rounded-md text-sm font-medium'
@@ -128,7 +128,7 @@ export const Navbar: React.FC = () => {
                   as='a'
                   href={item.href}
                   className={classNames(
-                    item.current
+                    item.href === Router.pathname
                       ? 'bg-gray-700 text-white'
                       : 'text-gray-700 hover:bg-gray-700 hover:text-white',
                     'block px-3 py-2 rounded-md text-base font-medium'
@@ -139,14 +139,11 @@ export const Navbar: React.FC = () => {
                 </Disclosure.Button>
               ))}
             </div>
-            <div className='pt-4 pb-3 border-t border-gray-700'>
+            <div className='pt-4 pb-3 border-t border-gray-300'>
               <div className='flex items-center px-5 sm:px-6'>
                 <div>
-                  <div className='text-base font-medium text-white'>
-                    {user.name}
-                  </div>
                   <div className='text-sm font-medium text-gray-400'>
-                    {user.email}
+                    {user}
                   </div>
                 </div>
                 <button
